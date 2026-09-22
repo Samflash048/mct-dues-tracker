@@ -2,7 +2,6 @@
 venv/
 __pycache__/
 *.pyc
-*.sqlite3
 
 # Node/React
 frontend/node_modules/
