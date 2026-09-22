@@ -130,9 +130,6 @@ MAILERS = {
         'BACKEND': 'django.core.mail.backends.console.EmailBackend',
     },
 }
-CORS_ALLOWED_ORIGINS = [
-    "http://localhost:5173", 
-    "http://127.0.0.1:5173",
-]
+CORS_ALLOWED_ORIGINS = True
 
 STATIC_ROOT = BASE_DIR / 'staticfiles'
