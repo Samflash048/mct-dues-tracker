@@ -21,7 +21,7 @@ function App() {
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    fetch("https://mct-dues-api.onrender.com/api/")
+    fetch("/api/students/")
       .then((res) => {
         if (!res.ok) throw new Error("Network response was not ok");
         return res.json();
