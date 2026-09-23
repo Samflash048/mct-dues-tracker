@@ -387,56 +387,65 @@ footer b {
 body,
 html,
 #root {
+  width: 100vw;
   max-width: 100vw;
   overflow-x: hidden;
+  margin: 0;
+  padding: 0;
 }
+
+/* Lock the wrapper so it doesn't bleed off-screen */
+.wrap {
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: hidden;
+}
+
 /* Ensure smooth-scrolling for the table on IOS/Andriod */
 .table-scroll {
   width: 100%;
+  display: block;
   overflow-x: auto;
   -webkit-overflow-scrolling: touch;
+  border-left: none;
+  border-right: none;
+  border-radius: 0;
 }
 
 /* Shrink paddings and fonts for phones */
 @media (max-width: 640px) {
   .wrap {
-    padding: 20px 14px 40px;
-  }
-  .tb-main {
-    padding: 16px 18px;
+    padding: 16px 12px 40px;
   }
   .tb-title {
     font-size: 24px;
   }
+  .tb-main {
+    padding: 16px;
+  }
   .tb-sub {
     font-size: 13px;
-  }
-  .tb-field {
-    padding: 8px 12px;
-  }
-  .tb-field-label {
-    font-size: 9px;
-  }
-  .tb-field-value {
-    font-size: 12px;
   }
 
   /* Stack the banner text vertically on small screens */
   .banner {
     flex-direction: column;
     gap: 10px;
-    padding: 12px 14px;
+    padding: 14px;
   }
-
-  /* Make the search bar fill the screen */
+  .stat-count {
+    font-size: 18px;
+  }
+  .stat {
+    padding: 12px 8px;
+  }
   .search {
     flex: 1 1 100%;
   }
   .search input {
-    padding: 10px 12px 10px 36px;
     font-size: 14px;
   }
-  .legend {
+  .legend{
     justify-content: flex-start;
   }
-}
+  
