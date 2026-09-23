@@ -445,7 +445,7 @@ html,
   .search input {
     font-size: 14px;
   }
-  .legend{
+  .legend {
     justify-content: flex-start;
   }
-  
+}
