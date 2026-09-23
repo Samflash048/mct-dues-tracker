@@ -23,13 +23,13 @@ function App() {
   const [searchQuery, setSearchQuery] = useState("");
 
   useEffect(() => {
-    fetch("https://mct-dues-api.onrender.com/api/students/")
-      .then((res) => {
-        if (!res.ok) throw new Error("Network response was not ok");
-        return res.json();
-      })
+    fetch("/api/students/")
+      .then((res) => res.json())
       .then((data) => setStudents(data))
-      .catch((err) => setError(err.message));
+      .catch((err) => {
+        console.error(err.message);
+        setError(err.message);
+      });
   }, []);
 
   const renderPaymentStatus = (payments: Payment[], level: number) => {

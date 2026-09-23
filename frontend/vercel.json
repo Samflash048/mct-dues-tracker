@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+        {
+            "source": "/api/:match*",
+            "destination": "https://mct-dues-api.onrender.com/api/:match*"
+        }
+    ]
+}
