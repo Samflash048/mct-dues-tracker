@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import Student, Payment
+from .models import AcademicSession, Course, Result, AccessCode
 
 @admin.register(Student)
 class StudentAdmin(admin.ModelAdmin):
@@ -14,3 +15,10 @@ class PaymentAdmin(admin.ModelAdmin):
     list_filter = ('academic_level', 'is_paid')
     search_fields = ('student__reg_number', 'student__full_name')
     ordering = ('student__full_name', 'academic_level')
+
+admin.site.register(AcademicSession)
+admin.site.register(Course)
+admin.site.register(Result)
+admin.site.register(AccessCode)
+
+
