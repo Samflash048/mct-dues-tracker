@@ -29,4 +29,6 @@ def load_csv(file_path, level):
 
 if __name__ == '__main__':
     load_csv('100L_cleaned.csv', 100)
+    load_csv('200L_cleaned.csv', 200)
     load_csv('300L_cleaned.csv', 300)
+    load_csv('400L_cleaned.csv', 400)
