@@ -4,7 +4,7 @@ from .serializers import StudentSerializer
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Student, AcademicSession, AccessCode
+from .models import Student, AcademicSession, AccessCode, Result
 
 class StudentViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Student.objects.prefetch_related('payment_set').all().order_by('full_name')  
@@ -51,3 +51,33 @@ def verify_access_code(request):
         return Response({"error": "Student not found."}, status=status.HTTP_404_NOT_FOUND)
     except AccessCode.DoesNotExist:
         return Response({"error": "No access code generated for you this session. See your Class Rep."}, status=status.HTTP_401_UNAUTHORIZED)
+    
+@api_view(['GET'])
+def fetch_student_results(request):
+    reg_number = request.GET.get('reg_number')
+
+    if not reg_number:
+        return Response({"error": "Registration number is required."}, status=status.HTTP_400_BAD_REQUEST)
+
+    try:
+        student = Student.objects.get(reg_number__iexact=reg_number)
+
+        results = Result.objects.filter(student=student).select_related('course', 'session')
+
+
+        results_data = []
+        for r in results:
+            results_data.append({
+                "course_code": r.course.code,
+                "title": r.course.title,
+                "unit_load": r.course.unit_load,
+                "level": r.course.level,
+                "semester": r.course.semester,
+                "session": r.session.name,
+                "score": r.score,
+                "grade": r.grade
+            })
+
+        return Response({"results": results_data}, status=status.HTTP_200_OK)
+    except Student.DoesNotExist:
+        return Response({"error": "Student not found."}, status=status.HTTP_404_NOT_FOUND)
